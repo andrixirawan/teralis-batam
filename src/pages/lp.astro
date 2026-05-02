@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { ArrowRight, CheckCircle2, X, Star, Clock4, ShieldCheck, Sparkles, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { BUSINESS, LINKS, SERVICES } from "@/lib/business";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
@@ -31,7 +31,7 @@ const faq = [
   { q: "Material apa yang dipakai?", a: "Kami pakai besi hollow / stainless 304 / spandek SNI sesuai pilihan paket. Kami sampaikan jujur kelebihan-kekurangannya." },
 ];
 
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis Batam.");
 ---
@@ -45,7 +45,7 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
 
       {/* Hero */}
       <section class="relative overflow-hidden bg-steel text-primary-foreground">
-        <Image src={heroImg} alt="Workshop Teralis Batam" class="absolute inset-0 h-full w-full object-cover opacity-35" width={1600} height={1000} />
+        <Picture src={heroImg} formats={['avif', 'webp']} alt="Workshop Teralis Batam" pictureAttributes={{ class: "absolute inset-0 h-full w-full" }} class="h-full w-full object-cover opacity-35" width={1600} height={1000} />
         <div class="absolute inset-0 bg-gradient-to-r from-steel via-steel/95 to-steel/40" />
         <div class="absolute inset-0 bg-radial-spark" />
         <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
@@ -60,12 +60,8 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
               Bengkel besi & stainless steel No.1 di Batam yang sudah dipercaya {BUSINESS.stats.clients} pelanggan. Hasil rapi, harga jujur, tanpa biaya kejutan.
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" class="bg-spark text-primary hover:bg-spark/90 text-base h-12 px-6">
-                <a href={wa} target="_blank" rel="noreferrer">Ya, Saya Mau Survey Gratis <ArrowRight class="ml-1 h-5 w-5" /></a>
-              </Button>
-              <Button asChild size="lg" variant="outline" class="border-white/30 bg-white/5 text-white hover:bg-white/15 h-12">
-                <a href={LINKS.tel(BUSINESS.phones[0])}><Phone class="mr-1 h-4 w-4" /> {BUSINESS.phones[0]}</a>
-              </Button>
+              <a href={wa} target="_blank" rel="noreferrer" class={buttonVariants({ size: "lg", className: "bg-spark text-primary hover:bg-spark/90 text-base h-12 px-6" })}>Ya, Saya Mau Survey Gratis <ArrowRight class="ml-1 h-5 w-5" /></a>
+              <a href={LINKS.tel(BUSINESS.phones[0])} class={buttonVariants({ size: "lg", variant: "outline", className: "border-white/30 bg-white/5 text-white hover:bg-white/15 h-12" })}><Phone class="mr-1 h-4 w-4" /> {BUSINESS.phones[0]}</a>
             </div>
             <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
               <div class="flex items-center gap-1 text-spark">{[...Array(5)].map((_, i) => <Star key={i} class="h-4 w-4 fill-current" />)}<span class="ml-1 text-primary-foreground/80">{BUSINESS.stats.rating}</span></div>
@@ -125,7 +121,9 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <div key={s.slug} class="overflow-hidden rounded-2xl bg-card shadow-card">
-              <Image src={s.image} alt={s.title} class="aspect-[4/3] w-full object-cover" loading="lazy" />
+              <div class="aspect-[4/3] w-full overflow-hidden">
+                <Picture src={s.image} formats={['avif', 'webp']} alt={s.title} pictureAttributes={{ class: "h-full w-full" }} class="h-full w-full object-cover" loading="lazy" />
+              </div>
               <div class="p-5">
                 <h3 class="font-display text-lg font-bold">{s.title}</h3>
                 <p class="mt-1 text-sm text-muted-foreground">{s.short}</p>
@@ -181,9 +179,7 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
           <div class="font-display text-sm uppercase tracking-widest text-spark">⚡ Penawaran Terbatas</div>
           <h3 class="mt-2 font-display text-2xl font-bold sm:text-3xl">Kami hanya terima 10 proyek baru bulan ini</h3>
           <p class="mt-2 text-muted-foreground">Untuk menjaga kualitas pengerjaan. Survey & konsultasi tetap GRATIS.</p>
-          <Button asChild size="lg" class="mt-6 bg-spark text-primary hover:bg-spark/90">
-            <a href={wa} target="_blank" rel="noreferrer">Ambil Slot Survey GRATIS →</a>
-          </Button>
+          <a href={wa} target="_blank" rel="noreferrer" class={buttonVariants({ size: "lg", className: "mt-6 bg-spark text-primary hover:bg-spark/90" })}>Ambil Slot Survey GRATIS →</a>
         </div>
       </section>
 
@@ -200,9 +196,7 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
           <h2 class="font-display text-3xl font-bold sm:text-4xl">Siap Pasang Teralis / Kanopi yang <span class="text-spark">Tahan Puluhan Tahun?</span></h2>
           <p class="mt-3 text-primary-foreground/80">Chat sekarang — tim kami respons di jam kerja. Tidak ada komitmen, tidak ada spam.</p>
           <div class="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Button asChild size="lg" class="bg-spark text-primary hover:bg-spark/90 text-base h-12 px-8">
-              <a href={wa} target="_blank" rel="noreferrer">Ya, Mau Konsultasi Gratis Sekarang →</a>
-            </Button>
+            <a href={wa} target="_blank" rel="noreferrer" class={buttonVariants({ size: "lg", className: "bg-spark text-primary hover:bg-spark/90 text-base h-12 px-8" })}>Ya, Mau Konsultasi Gratis Sekarang →</a>
           </div>
           <div class="mt-4 flex flex-wrap justify-center gap-4 text-xs text-primary-foreground/60">
             <span>✓ Gratis konsultasi</span><span>✓ Survey GRATIS area Batam</span><span>✓ Respon &lt; 1 jam</span>

@@ -7,7 +7,7 @@ const items = [
   ...SERVICES.slice(0, 3),
 ];
 
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 ---
 
 <Layout title="Teralis Batam">
@@ -22,9 +22,9 @@ import { Image } from "astro:assets";
       <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
         <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 [column-fill:_balance]">
           {items.map((s, i) => (
-            <figure key={i} class="mb-4 break-inside-avoid overflow-hidden rounded-xl shadow-card group relative">
-              <Image src={s.image} alt={s.title} class="w-full transition duration-500 group-hover:scale-105" loading="lazy" />
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-steel/90 to-transparent p-4">
+            <figure key={i} class="mb-4 aspect-[4/3] w-full break-inside-avoid overflow-hidden rounded-xl shadow-card group relative">
+              <Picture src={s.image} formats={['avif', 'webp']} alt={s.title} pictureAttributes={{ class: "h-full w-full" }} class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4">
                 <div class="font-display font-semibold text-primary-foreground">{s.title}</div>
                 <div class="text-xs text-primary-foreground/70">{s.short}</div>
               </figcaption>

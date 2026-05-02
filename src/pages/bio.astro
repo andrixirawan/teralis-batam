@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { MessageCircle, Phone, Mail, MapPin, Instagram, Facebook, Youtube, Globe } from "lucide-react";
 import { BUSINESS, LINKS, SERVICES } from "@/lib/business";
 
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 ---
 
 <Layout title="Teralis Batam · Link in Bio" blank={true}>
@@ -46,7 +46,7 @@ import { Image } from "astro:assets";
             {SERVICES.slice(0, 6).map((s) => (
               <a key={s.slug} href={LINKS.whatsappWith(`Halo, saya tertarik layanan ${s.title}.`)} target="_blank" rel="noreferrer"
                 class="group relative aspect-[4/5] overflow-hidden rounded-2xl shadow-card">
-                <Image src={s.image} alt={s.title} class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" loading="lazy" />
+                <Picture src={s.image} formats={['avif', 'webp']} alt={s.title} pictureAttributes={{ class: "absolute inset-0 h-full w-full" }} class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-steel via-steel/40 to-transparent" />
                 <div class="absolute inset-x-0 bottom-0 p-3 text-primary-foreground">
                   <div class="font-display text-sm font-bold leading-tight">{s.title}</div>
@@ -71,17 +71,5 @@ import { Image } from "astro:assets";
             </a>
           ))}
         </div>
-
-        <div class="pt-4 text-center text-[10px] text-primary-foreground/40">
-          © {new Date().getFullYear()} {BUSINESS.legal}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-
-
 
 </Layout>
