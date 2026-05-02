@@ -1,8 +1,66 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageContent from '../pages-react/contact.tsx';
+import { Button } from "@/components/ui/button";
+import { BUSINESS, LINKS } from "@/lib/business";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 ---
 
 <Layout title="Teralis Batam">
-  <PageContent client:load />
+<section class="bg-steel text-primary-foreground">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+          <div class="text-xs font-semibold uppercase tracking-widest text-spark">Kontak</div>
+          <h1 class="mt-3 font-display text-4xl font-bold sm:text-5xl">Hubungi Kami</h1>
+          <p class="mt-4 max-w-2xl text-primary-foreground/80">Konsultasi & survey GRATIS. Tim kami siap merespons di jam kerja.</p>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div class="grid gap-10 md:grid-cols-2">
+          <div class="space-y-4">
+            {[
+              { i: MapPin, t: "Alamat Workshop", v: BUSINESS.address, href: LINKS.maps, cta: "Buka di Maps" },
+              { i: Phone, t: "Telepon", v: BUSINESS.phones.join(" · "), href: LINKS.tel(BUSINESS.phones[0]), cta: "Telepon Sekarang" },
+              { i: MessageCircle, t: "WhatsApp", v: BUSINESS.phones[0], href: LINKS.whatsappQuote, cta: "Chat WA" },
+              { i: Mail, t: "Email", v: BUSINESS.email, href: LINKS.mail, cta: "Kirim Email" },
+              { i: Clock, t: "Jam Operasional", v: BUSINESS.hours },
+            ].map((c) => (
+              <div key={c.t} class="flex items-start justify-between gap-4 rounded-xl border border-border bg-card p-5 shadow-card">
+                <div class="flex gap-4">
+                  <div class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-spark/15 text-spark"><c.i class="h-5 w-5" /></div>
+                  <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.t}</div>
+                    <div class="mt-0.5 text-sm font-medium">{c.v}</div>
+                  </div>
+                </div>
+                {c.href && (
+                  <Button asChild size="sm" variant="outline">
+                    <a href={c.href} target="_blank" rel="noreferrer">{c.cta}</a>
+                  </Button>
+                )}
+              </div>
+            ))}
+            <Button asChild size="lg" class="w-full bg-spark text-primary hover:bg-spark/90">
+              <a href={LINKS.whatsappQuote} target="_blank" rel="noreferrer">Konsultasi Gratis via WhatsApp</a>
+            </Button>
+          </div>
+
+          <div class="overflow-hidden rounded-2xl border border-border shadow-card">
+            <iframe
+              title="Lokasi Teralis Batam"
+              src={LINKS.mapsEmbed}
+              class="h-full min-h-[400px] w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+
+
+
 </Layout>

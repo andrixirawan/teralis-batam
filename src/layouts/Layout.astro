@@ -1,6 +1,5 @@
 ---
 import '../styles.css';
-import { ClientRouter } from 'astro:transitions';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { FloatingWhatsApp } from '@/components/floating-whatsapp';
@@ -27,7 +26,6 @@ const { title, description = "Bengkel teralis Batam — fabrikasi teralis jendel
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-		<ClientRouter />
 	</head>
 	<body class="min-h-screen bg-background font-sans antialiased text-foreground animate-in fade-in duration-700">
 		<div class="flex min-h-screen flex-col">

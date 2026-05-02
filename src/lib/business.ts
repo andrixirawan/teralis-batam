@@ -41,19 +41,19 @@ export const LINKS = {
   website: "https://www.teralis-batam.com",
 } as const;
 
-import teralis from "@/assets/svc-teralis.jpg?url";
-import railing from "@/assets/svc-railing.jpg?url";
-import kanopi from "@/assets/svc-kanopi.jpg?url";
-import rollingdoor from "@/assets/svc-rollingdoor.jpg?url";
-import bajaringan from "@/assets/svc-bajaringan.jpg?url";
-import konstruksi from "@/assets/svc-konstruksi.jpg?url";
+import teralis from "@/assets/svc-teralis.jpg";
+import railing from "@/assets/svc-railing.jpg";
+import kanopi from "@/assets/svc-kanopi.jpg";
+import rollingdoor from "@/assets/svc-rollingdoor.jpg";
+import bajaringan from "@/assets/svc-bajaringan.jpg";
+import konstruksi from "@/assets/svc-konstruksi.jpg";
 
 export type Service = {
   slug: string;
   title: string;
   short: string;
   desc: string;
-  image: string;
+  image: any;
   features: string[];
 };
 

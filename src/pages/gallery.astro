@@ -1,8 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageContent from '../pages-react/gallery.tsx';
+import { SERVICES } from "@/lib/business";
+
+const items = [
+  ...SERVICES,
+  ...SERVICES.slice(0, 3),
+];
+
+import { Image } from "astro:assets";
 ---
 
 <Layout title="Teralis Batam">
-  <PageContent client:load />
+<section class="bg-steel text-primary-foreground">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+          <div class="text-xs font-semibold uppercase tracking-widest text-spark">Galeri</div>
+          <h1 class="mt-3 font-display text-4xl font-bold sm:text-5xl">Hasil Pengerjaan Kami</h1>
+          <p class="mt-4 max-w-2xl text-primary-foreground/80">Beberapa contoh proyek yang sudah kami selesaikan untuk klien rumah dan komersial di Batam.</p>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 [column-fill:_balance]">
+          {items.map((s, i) => (
+            <figure key={i} class="mb-4 break-inside-avoid overflow-hidden rounded-xl shadow-card group relative">
+              <Image src={s.image} alt={s.title} class="w-full transition duration-500 group-hover:scale-105" loading="lazy" />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-steel/90 to-transparent p-4">
+                <div class="font-display font-semibold text-primary-foreground">{s.title}</div>
+                <div class="text-xs text-primary-foreground/70">{s.short}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
 </Layout>
