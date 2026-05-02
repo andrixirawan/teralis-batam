@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { BUSINESS, LINKS } from "@/lib/business";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 ---
@@ -33,15 +33,11 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
                   </div>
                 </div>
                 {c.href && (
-                  <Button asChild size="sm" variant="outline">
-                    <a href={c.href} target="_blank" rel="noreferrer">{c.cta}</a>
-                  </Button>
+                  <a href={c.href} target="_blank" rel="noreferrer" class={buttonVariants({ size: "sm", variant: "outline" })}>{c.cta}</a>
                 )}
               </div>
             ))}
-            <Button asChild size="lg" class="w-full bg-spark text-primary hover:bg-spark/90">
-              <a href={LINKS.whatsappQuote} target="_blank" rel="noreferrer">Konsultasi Gratis via WhatsApp</a>
-            </Button>
+            <a href={LINKS.whatsappQuote} target="_blank" rel="noreferrer" class={buttonVariants({ size: "lg", className: "w-full bg-spark text-primary hover:bg-spark/90" })}>Konsultasi Gratis via WhatsApp</a>
           </div>
 
           <div class="overflow-hidden rounded-2xl border border-border shadow-card">
@@ -55,12 +51,4 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
           </div>
         </div>
       </section>
-    </>
-  );
-}
-
-
-
-
-
 </Layout>

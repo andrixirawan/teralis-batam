@@ -45,7 +45,7 @@ const wa = LINKS.whatsappWith("Halo, saya mau ambil promo survey GRATIS Teralis 
 
       {/* Hero */}
       <section class="relative overflow-hidden bg-steel text-primary-foreground">
-        <Picture src={heroImg} formats={['avif', 'webp']} alt="Workshop Teralis Batam" pictureAttributes={{ class: "absolute inset-0 h-full w-full" }} class="h-full w-full object-cover opacity-35" width={1600} height={1000} />
+        <Picture src={heroImg} formats={['avif', 'webp']} alt="Workshop Teralis Batam" pictureAttributes={{ class: "absolute inset-0 h-full w-full" }} class="h-full w-full object-cover opacity-35" width={1600} height={1000} loading="eager" fetchpriority="high" />
         <div class="absolute inset-0 bg-gradient-to-r from-steel via-steel/95 to-steel/40" />
         <div class="absolute inset-0 bg-radial-spark" />
         <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
